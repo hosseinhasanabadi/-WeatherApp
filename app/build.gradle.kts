@@ -1,7 +1,7 @@
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.jetbrains.kotlin.android)
-    id ("com.google.gms.google-services")
+   // id ("com.google.gms.google-services")
     id ("kotlin-kapt")
     id ("dagger.hilt.android.plugin")
     id("com.google.dagger.hilt.android")
@@ -74,10 +74,10 @@ dependencies {
 
 
     //firebase/firestorm
-implementation(platform(libs.firebase.bom))
+//implementation(platform(libs.firebase.bom))
     //firebase auth and firestorm
-    implementation (libs.firebase.auth.ktx)
-    implementation (libs.firebase.firestore.ktx)
+   // implementation (libs.firebase.auth.ktx)
+   // implementation (libs.firebase.firestorm.ktx)
 
     //Dagger - Hilt
     implementation (libs.hilt.android)
