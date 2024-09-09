@@ -1,7 +1,8 @@
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.jetbrains.kotlin.android)
-   // id ("com.google.gms.google-services")
+
+    id("com.google.gms.google-services")
     id ("kotlin-kapt")
     id ("dagger.hilt.android.plugin")
     id("com.google.dagger.hilt.android")
@@ -13,7 +14,7 @@ android {
 
     defaultConfig {
         applicationId = "com.example.weatherapp"
-        minSdk = 29
+        minSdk = 27
         targetSdk = 34
         versionCode = 1
         versionName = "1.0"
@@ -74,11 +75,12 @@ dependencies {
 
 
     //firebase/firestorm
-//implementation(platform(libs.firebase.bom))
-    //firebase auth and firestorm
-   // implementation (libs.firebase.auth.ktx)
-   // implementation (libs.firebase.firestorm.ktx)
-
+implementation(platform(libs.firebase.bom))
+   // firebase auth and firestorm
+  //  implementation (libs.firebase.auth.ktx)
+    implementation(libs.firebase.auth)
+  //  implementation ("com.google.firebase:firebase-firestore-ktx")
+    implementation(libs.firebase.firestore)
     //Dagger - Hilt
     implementation (libs.hilt.android)
     //noinspection UseTomlInstead
@@ -99,8 +101,15 @@ dependencies {
     implementation (libs.androidx.lifecycle.viewmodel.ktx)
     implementation (libs.androidx.lifecycle.runtime.ktx.v240)
 
-    // Coil
+    //Coil
     implementation(libs.coil.compose)
+    implementation("io.coil-kt:coil:2.7.0")
+
+
+
+
+
+
 
     // Retrofit
     implementation (libs.retrofit)
