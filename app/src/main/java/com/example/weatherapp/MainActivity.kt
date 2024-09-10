@@ -33,13 +33,15 @@ class MainActivity : ComponentActivity() {
     }
 }
 
-@Preview
+
 @SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
 @Composable
 fun WeatherApp() {
     WeatherAppTheme {
         Scaffold(modifier = Modifier.fillMaxSize()) {
-            Column(horizontalAlignment = Alignment.CenterHorizontally,
+            Column(
+
+             horizontalAlignment = Alignment.CenterHorizontally,
                verticalArrangement = Arrangement.Center
 
             ) {

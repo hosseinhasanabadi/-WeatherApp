@@ -16,12 +16,7 @@ fun MainScreen(
     navController: NavController,
     mainViewModel: MainViewModel = hiltViewModel(),
 ) {
-    ShowData(mainViewModel, )
-}
 
-@SuppressLint("ProduceStateDoesNotAssignValue")
-@Composable
-fun ShowData(mainViewModel: MainViewModel) {
     val weatherData = produceState<DataOrException<Weather, Boolean, Exception>>(
         initialValue = DataOrException(loading = true)
     ) {
@@ -33,7 +28,6 @@ fun ShowData(mainViewModel: MainViewModel) {
 
 
     }else if (weatherData.data!=null){
-        Text(text = "main Screen ${weatherData.data.city.country}")
     }
 
 
