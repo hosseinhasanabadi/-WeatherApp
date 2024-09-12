@@ -19,8 +19,12 @@ class MainViewModel @Inject constructor(
 
 ):ViewModel() {
 
-    suspend fun getWeatherData(city:String):DataOrException
+    suspend fun getWeatherData(city:String,
+                              // daysCount: Int = 7
+    ):DataOrException
     <Weather,Boolean,Exception>{
-        return repository.getWeather(cityQuery =city )
+        return repository.getWeather(cityQuery =city,
+           // daysCount = daysCount
+        )
     }
 }

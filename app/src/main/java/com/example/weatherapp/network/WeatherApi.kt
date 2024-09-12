@@ -12,6 +12,7 @@ interface WeatherApi {
     suspend fun getWeather(
         @Query ("q") query:String,
         @Query ("units") units:String= "imperial",
+       // @Query("cnt") cnt: Int = 7, // تعداد روزها را از طریق پارامتر `cnt` مشخص کن
         @Query ("appid") appid:String =Constants.API_KEY
     ):Weather
 }
