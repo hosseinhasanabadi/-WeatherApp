@@ -50,7 +50,7 @@ fun WeatherApp() {
     WeatherAppTheme {
         Scaffold(
             modifier = Modifier.fillMaxSize()){
-          // background = Color.White, // اینجا پس‌زمینه سفید می‌شود
+          // background = Color.White // اینجا پس‌زمینه سفید می‌شود
 
                 Column(
                     horizontalAlignment = Alignment.CenterHorizontally,

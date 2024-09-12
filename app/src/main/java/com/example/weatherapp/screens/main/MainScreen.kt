@@ -29,9 +29,12 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.text.SpanStyle
+import androidx.compose.ui.text.buildAnnotatedString
 
 import androidx.compose.ui.text.font.FontStyle
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.withStyle
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
@@ -44,7 +47,10 @@ import com.example.weatherapp.model.Weather
 import com.example.weatherapp.model.WeatherItem
 import com.example.weatherapp.utils.formatDate
 import com.example.weatherapp.utils.formatDecimals
+import com.example.weatherapp.widgets.HumidityWindPressureRow
 import com.example.weatherapp.widgets.WeatherAppBar
+import com.example.weatherapp.widgets.WeatherDetailRow
+import com.example.weatherapp.widgets.WeatherStateImage
 
 
 @Composable
@@ -58,7 +64,7 @@ fun MainScreen(
     val weatherData = produceState<DataOrException<Weather, Boolean, Exception>>(
         initialValue = DataOrException(loading = true)
     ) {
-        value = mainViewModel.getWeatherData("tehran")
+        value = mainViewModel.getWeatherData("Maputo")
     }.value
 
     if (weatherData.loading == true) {
@@ -187,126 +193,3 @@ fun MainContent(data: Weather,paddingValues: PaddingValues) {
     }
 
 }
-
-@SuppressLint("SuspiciousIndentation")
-@Composable
-fun WeatherDetailRow(weatherItem: WeatherItem) {
-    val day = formatDate(weatherItem.dt).split(",")[0] // استخراج روز هفته از تاریخ
-    val imageUrl = "https://openweathermap.org/img/wn/${weatherItem.weather[0].icon}@2x.png"
-
-    Surface(
-        modifier = Modifier
-            .padding(3.dp)
-            .fillMaxWidth(),
-        shape = CircleShape.copy(topEnd = CornerSize(6.dp)),
-        color = Color.White
-    ) {
-        Row(
-            modifier = Modifier
-                .fillMaxWidth()
-                .padding(8.dp),
-            verticalAlignment = Alignment.CenterVertically,
-            horizontalArrangement = Arrangement.SpaceBetween
-        ) {
-            // نمایش روز
-            Text(
-                text = day,
-                modifier = Modifier.padding(start = 5.dp)
-            )
-
-            // نمایش تصویر وضعیت آب‌وهوا
-            WeatherStateImage(imageUrl = imageUrl)
-        }
-    }
-}
-
-
-
-
-//TODO api premium
-
-/*@Composable
-fun SunSetSunRiseRow(weather:WeatherItem) {
-
-    Row (modifier = Modifier
-        .fillMaxWidth()
-
-        .padding(
-            top = 15.dp,
-            bottom = 6.dp
-        )
-        , horizontalArrangement = Arrangement.SpaceBetween,
-        verticalAlignment = Alignment.CenterVertically
-    ){
-        Row {
-            Image(painter = painterResource(id = R.drawable.sunrise),
-                contentDescription = "sunrise icon"
-                , modifier = Modifier.size(25.dp))
-            Text(text = formatDateTime(weather.sys.toString()),
-                style = MaterialTheme.typography.bodySmall)
-
-            
-        }
-        Row {
-            Image(painter = painterResource(id = R.drawable.sunset),
-                contentDescription = "sunset icon"
-                , modifier = Modifier.size(25.dp))
-            Text(text = formatDateTime(weather.sys),
-                style = MaterialTheme.typography.bodySmall)
-
-
-        }
-    }
-}*/
-
-@Composable
-fun HumidityWindPressureRow(weather: WeatherItem) {
-    Row (modifier = Modifier
-        .padding(12.dp)
-        .fillMaxWidth(),
-        verticalAlignment = Alignment.CenterVertically
-        , horizontalArrangement = Arrangement.SpaceBetween
-    ){
-        Row (modifier = Modifier.padding(4.dp)){
-            Icon(painter = painterResource(id = R.drawable.humidity)
-                , contentDescription ="icon humidity ", modifier = 
-            Modifier.size(20.dp))
-            Text(text = "${weather.main.humidity}%",
-                style = MaterialTheme.typography.bodySmall)
-
-        }
-        Row (){
-            Icon(painter = painterResource(id = R.drawable.pressure)
-                , contentDescription ="icon pressure ", modifier =
-                Modifier.size(20.dp))
-            Text(text = "${weather.main.pressure} psi%",
-                style = MaterialTheme.typography.bodySmall)
-
-        }
-        Row (){
-            Icon(painter = painterResource(id = R.drawable.wind)
-                , contentDescription ="icon wind ", modifier =
-                Modifier.size(20.dp))
-            Text(text = "${weather.main.humidity} mph%",
-                style = MaterialTheme.typography.bodySmall)
-
-        }
-
-    }
-
-}
-
-
-@Composable
-fun WeatherStateImage(
-  imageUrl: String
-) {
-    Image(painter = rememberAsyncImagePainter(imageUrl)
-
-        , contentDescription ="icon image",
-
-        modifier = Modifier.size(50.dp,50.dp)
-    )
-}
-
-
