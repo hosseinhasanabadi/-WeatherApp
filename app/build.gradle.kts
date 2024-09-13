@@ -105,6 +105,13 @@ implementation(platform(libs.firebase.bom))
     implementation(libs.coil.compose)
     implementation("io.coil-kt:coil:2.7.0")
 
+    //Room
+    val room_version = "2.6.1"
+    implementation("androidx.room:room-runtime:$room_version")
+    annotationProcessor("androidx.room:room-compiler:$room_version")
+
+
+
 
 
 
