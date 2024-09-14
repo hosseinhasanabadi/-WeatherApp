@@ -1,7 +1,6 @@
 package com.example.weatherapp.screens.search
 
 import android.annotation.SuppressLint
-import android.util.Log
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -29,21 +28,22 @@ import androidx.compose.ui.platform.LocalSoftwareKeyboardController
 import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.unit.dp
+import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
 import com.example.weatherapp.navigation.WeatherScreens
 import com.example.weatherapp.widgets.WeatherAppBar
-import kotlin.math.log
 
 @SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
 @Composable
 fun SearchScreen(navController: NavController){
     Scaffold (topBar = {
         WeatherAppBar(
-            title = "Search",
+
+
+                    title = "Search",
             navController = navController, icon =
         Icons.AutoMirrored.Filled.ArrowBack,
-            isMainScreen = false,
-            ){
+            isMainScreen = false,){
             navController.popBackStack()
         }
     }) { paddingValues ->

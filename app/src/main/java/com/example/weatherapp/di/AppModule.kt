@@ -30,8 +30,8 @@ class AppModule {
     fun providesAppDatabase(@ApplicationContext context:Context):WeatherDatabase= Room.databaseBuilder(
         context,
         WeatherDatabase::class.java,
-        "weather_database"
-    )
+        "weather_database")
+
         .fallbackToDestructiveMigration()
         .build()
 

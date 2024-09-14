@@ -85,6 +85,9 @@ implementation(platform(libs.firebase.bom))
     implementation (libs.hilt.android)
     //noinspection UseTomlInstead
     implementation ("androidx.hilt:hilt-navigation-compose:1.2.0")
+    val hilt_version = "2.44" // or the latest version
+    implementation ("com.google.dagger:hilt-android:$hilt_version")
+    kapt( "com.google.dagger:hilt-android-compiler:$hilt_version")
     // Dagger - Hilt
     kapt (libs.hilt.android.compiler)
     kapt (libs.androidx.hilt.compiler)

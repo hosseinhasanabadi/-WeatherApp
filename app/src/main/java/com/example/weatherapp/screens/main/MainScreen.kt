@@ -35,6 +35,7 @@ import com.example.weatherapp.data.DataOrException
 import com.example.weatherapp.model.Weather
 import com.example.weatherapp.model.WeatherItem
 import com.example.weatherapp.navigation.WeatherScreens
+import com.example.weatherapp.screens.favorite.FavoriteViewModel
 import com.example.weatherapp.utils.formatDate
 import com.example.weatherapp.utils.formatDecimals
 import com.example.weatherapp.widgets.HumidityWindPressureRow
@@ -46,17 +47,17 @@ import com.example.weatherapp.widgets.WeatherStateImage
 @Composable
 fun MainScreen(
     navController: NavController,
+
     mainViewModel: MainViewModel = hiltViewModel(),
     city: String?,
 ) {
     //
-
+   // val favoriteViewModel: FavoriteViewModel = hiltViewModel()
 
     val weatherData = produceState<DataOrException<Weather, Boolean, Exception>>(
         initialValue = DataOrException(loading = true)
     ) {
         value = mainViewModel.getWeatherData(city=city.toString()
-
         )
     }.value
 
@@ -67,8 +68,10 @@ fun MainScreen(
     } else if (weatherData.data != null) {
         // Text(text = "main Screen ${weatherData.data.city.country}")
         MainScaffold(
+
             weather = weatherData.data,
             navController
+
         )
     }
 }
@@ -78,6 +81,7 @@ fun MainScreen(
 fun MainScaffold(
     weather: Weather,
     navController: NavController,
+   // favoriteViewModel: Any = favoriteViewModel
 ) {
     /*  val weatherData = produceState<DataOrException<Weather, Boolean, Exception>>(
           initialValue = DataOrException(loading = true)
@@ -94,10 +98,12 @@ fun MainScaffold(
       }*/
     Scaffold(topBar = {
         WeatherAppBar(
+
             title = weather.city.name +" ,${weather.city.country}",
 
 
             navController = navController,
+          //  favoriteViewModel = favoriteViewModel,
             onAddActionClicked = {
                 navController.navigate(WeatherScreens.SearchScreen.name)
 
